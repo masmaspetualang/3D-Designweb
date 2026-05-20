@@ -2,8 +2,7 @@
 // Prisma v7 memindahkan konfigurasi database ke file ini
 // File schema.prisma tidak lagi mendukung url = env("DATABASE_URL")
 
-import "dotenv/config";
-import { defineConfig, env } from "prisma/config";
+import { defineConfig } from "prisma/config";
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
@@ -11,6 +10,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    url: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_WbzTelsJw1o5@ep-super-haze-ao338x8h.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require",
   },
 });

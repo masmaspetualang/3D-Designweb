@@ -16,7 +16,13 @@ declare global {
 }
 
 // Singleton: gunakan yang sudah ada, atau buat baru
-const prisma = global.prisma ?? new PrismaClient();
+const prisma = global.prisma ?? new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_WbzTelsJw1o5@ep-super-haze-ao338x8h.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+    }
+  }
+});
 
 // Di mode development, simpan di global agar tidak dibuat ulang
 // saat hot-reload (Next.js dev server reload otomatis)
